@@ -5,6 +5,7 @@ class Usuario():
         self.passw = ""
         self.foto = ""
         self.admin = 0
+        #Marca que indica si se debe borrar o actualizar el registro original en la base de datos.
         self.STATUS = {"borrar": False, "actualizar": False}
 
     def crear(self, **kwargs):
