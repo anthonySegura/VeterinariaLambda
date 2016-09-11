@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a20035e3-efcd-4f22-b03b-9a2674640114" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataBase/Data.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/conection.py" afterPath="$PROJECT_DIR$/DataBase/conection.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Clases/Animal.py" afterPath="$PROJECT_DIR$/Clases/Animal.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Clases/Dosis.py" afterPath="$PROJECT_DIR$/Clases/Dosis.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Clases/Enfermedad.py" afterPath="$PROJECT_DIR$/Clases/Enfermedad.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Clases/Medicamento.py" afterPath="$PROJECT_DIR$/Clases/Medicamento.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Clases/Prescripcion.py" afterPath="$PROJECT_DIR$/Clases/Prescripcion.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Clases/Usuario.py" afterPath="$PROJECT_DIR$/Clases/Usuario.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataBase/Data.py" afterPath="$PROJECT_DIR$/DataBase/Data.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/Funciones.py" afterPath="$PROJECT_DIR$/utilities/Funciones.py" />
     </list>
     <ignored path="VeterinariaLambda.iws" />
@@ -20,9 +24,10 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/VeterinariaLambda$Animal.coverage" NAME="Animal Coverage Results" MODIFIED="1473501902584" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Clases" />
-    <SUITE FILE_PATH="coverage/VeterinariaLambda$Funciones.coverage" NAME="Funciones Coverage Results" MODIFIED="1473508578125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utilities" />
+    <SUITE FILE_PATH="coverage/VeterinariaLambda$Enfermedad.coverage" NAME="Enfermedad Coverage Results" MODIFIED="1473517751700" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Clases" />
+    <SUITE FILE_PATH="coverage/VeterinariaLambda$Funciones.coverage" NAME="Funciones Coverage Results" MODIFIED="1473553988251" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utilities" />
     <SUITE FILE_PATH="coverage/VeterinariaLambda$run.coverage" NAME="run Coverage Results" MODIFIED="1473485859025" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/VeterinariaLambda$Data.coverage" NAME="Data Coverage Results" MODIFIED="1473513841344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DataBase" />
+    <SUITE FILE_PATH="coverage/VeterinariaLambda$Data.coverage" NAME="Data Coverage Results" MODIFIED="1473559975660" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DataBase" />
     <SUITE FILE_PATH="coverage/VeterinariaLambda$conection.coverage" NAME="conection Coverage Results" MODIFIED="1473501914475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/VeterinariaLambda$conection__1_.coverage" NAME="conection (1) Coverage Results" MODIFIED="1473506820056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DataBase" />
   </component>
@@ -34,14 +39,12 @@
       <content type="file-editors">
         <state>
           <leaf>
-            <file leaf-file-name="conection.py" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/DataBase/conection.py">
+            <file leaf-file-name="Enfermedad.py" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/Clases/Enfermedad.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="272">
-                    <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-                    <folding>
-                      <marker date="1473507284670" expanded="true" signature="372:463" ph="INSERT INTO `usuario`... " />
-                    </folding>
+                  <state relative-caret-position="311">
+                    <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+                    <folding />
                   </state>
                 </provider>
               </entry>
@@ -60,8 +63,8 @@
       <file leaf-file-name="conection.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DataBase/conection.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="14" />
+            <state relative-caret-position="272">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding>
                 <marker date="1473507284670" expanded="true" signature="372:463" ph="INSERT INTO `usuario`... " />
               </folding>
@@ -73,12 +76,13 @@
         <entry file="file://$PROJECT_DIR$/DataBase/Data.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="105" column="25" selection-start-line="105" selection-start-column="25" selection-end-line="105" selection-end-column="25" />
+              <caret line="146" column="0" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
-                <marker date="1473513875245" expanded="true" signature="621:646" ph="SELECT `*` F... usuario" />
-                <marker date="1473513875245" expanded="true" signature="1046:1070" ph="SELECT `*` F... animal" />
-                <marker date="1473513875245" expanded="true" signature="1403:1426" ph="SELECT `*` F... dosis" />
+                <marker date="1473559983470" expanded="true" signature="763:788" ph="SELECT `*` F... usuario" />
+                <marker date="1473559983470" expanded="true" signature="1186:1210" ph="SELECT `*` F... animal" />
+                <marker date="1473559983470" expanded="true" signature="1541:1564" ph="SELECT `*` F... dosis" />
+                <marker date="1473559983470" expanded="true" signature="2006:2034" ph="SELECT `*` F... enfermedad" />
               </folding>
             </state>
           </provider>
@@ -88,19 +92,10 @@
         <entry file="file://$PROJECT_DIR$/Clases/Usuario.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
-              <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Animal.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Clases/Animal.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+              <caret line="35" column="25" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
               <folding>
-                <marker date="1473501902502" expanded="true" signature="14:600" ph="..." />
+                <marker date="1473555740651" expanded="true" signature="16:1436" ph="..." />
+                <marker date="1473555740651" expanded="true" signature="607:1049" ph="..." />
               </folding>
             </state>
           </provider>
@@ -109,43 +104,12 @@
       <file leaf-file-name="Dosis.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Clases/Dosis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Enfermedad.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Clases/Enfermedad.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Medicamento.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Clases/Medicamento.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="36" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+            <state relative-caret-position="160">
+              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding>
-                <marker date="1473502169212" expanded="true" signature="19:605" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Prescripcion.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Clases/Prescripcion.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
-              <folding>
-                <marker date="1473502169366" expanded="true" signature="20:885" ph="..." />
-                <marker date="1473502169366" expanded="true" signature="802:825" ph="..." />
+                <marker date="1473554905467" expanded="true" signature="13:1567" ph="..." />
+                <marker date="1473554905467" expanded="true" signature="37:281" ph="..." />
+                <marker date="1473554905467" expanded="true" signature="597:1140" ph="..." />
               </folding>
             </state>
           </provider>
@@ -154,12 +118,47 @@
       <file leaf-file-name="Funciones.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utilities/Funciones.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="408">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding>
-                <marker date="1473508665172" expanded="true" signature="106:161" ph="..." />
-                <marker date="1473508665172" expanded="true" signature="249:328" ph="..." />
-                <marker date="1473508665172" expanded="true" signature="449:518" ph="..." />
+                <marker date="1473553988225" expanded="true" signature="440:522" ph="..." />
+                <marker date="1473553988225" expanded="true" signature="1606:1672" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Medicamento.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Clases/Medicamento.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="21" column="60" selection-start-line="21" selection-start-column="60" selection-end-line="21" selection-end-column="60" />
+              <folding>
+                <marker date="1473554905353" expanded="true" signature="399:714" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Prescripcion.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Clases/Prescripcion.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="33" column="60" selection-start-line="33" selection-start-column="60" selection-end-line="33" selection-end-column="60" />
+              <folding>
+                <marker date="1473554905496" expanded="true" signature="576:1092" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Animal.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Clases/Animal.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding>
+                <marker date="1473554905527" expanded="true" signature="394:709" ph="..." />
               </folding>
             </state>
           </provider>
@@ -210,14 +209,14 @@
         <option value="$PROJECT_DIR$/DTO's/Medicamento.py" />
         <option value="$PROJECT_DIR$/functions/Funciones.py" />
         <option value="$PROJECT_DIR$/conection.py" />
+        <option value="$PROJECT_DIR$/DataBase/conection.py" />
+        <option value="$PROJECT_DIR$/utilities/Funciones.py" />
         <option value="$PROJECT_DIR$/Clases/Animal.py" />
-        <option value="$PROJECT_DIR$/Clases/Dosis.py" />
         <option value="$PROJECT_DIR$/Clases/Enfermedad.py" />
+        <option value="$PROJECT_DIR$/Clases/Dosis.py" />
         <option value="$PROJECT_DIR$/Clases/Medicamento.py" />
         <option value="$PROJECT_DIR$/Clases/Prescripcion.py" />
         <option value="$PROJECT_DIR$/Clases/Usuario.py" />
-        <option value="$PROJECT_DIR$/DataBase/conection.py" />
-        <option value="$PROJECT_DIR$/utilities/Funciones.py" />
         <option value="$PROJECT_DIR$/DataBase/Data.py" />
       </list>
     </option>
@@ -260,6 +259,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -354,7 +354,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -385,24 +384,6 @@
       <module name="VeterinariaLambda" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="C:\Users\anthony\Documents\Lenguajes\VeterinariaLambda\DataBase\conection.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Animal" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Clases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="VeterinariaLambda" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Clases/Animal.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -457,6 +438,24 @@
       <module name="VeterinariaLambda" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utilities/Funciones.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Enfermedad" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Clases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="VeterinariaLambda" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Clases/Enfermedad.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -671,18 +670,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.conection" />
-      <item index="1" class="java.lang.String" itemvalue="Python.Animal" />
-      <item index="2" class="java.lang.String" itemvalue="Python.Data" />
-      <item index="3" class="java.lang.String" itemvalue="Python.conection (1)" />
-      <item index="4" class="java.lang.String" itemvalue="Python.Funciones" />
+      <item index="1" class="java.lang.String" itemvalue="Python.Data" />
+      <item index="2" class="java.lang.String" itemvalue="Python.conection (1)" />
+      <item index="3" class="java.lang.String" itemvalue="Python.Funciones" />
+      <item index="4" class="java.lang.String" itemvalue="Python.Enfermedad" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.Data" />
         <item index="1" class="java.lang.String" itemvalue="Python.Funciones" />
-        <item index="2" class="java.lang.String" itemvalue="Python.conection (1)" />
-        <item index="3" class="java.lang.String" itemvalue="Python.conection" />
-        <item index="4" class="java.lang.String" itemvalue="Python.Animal" />
+        <item index="2" class="java.lang.String" itemvalue="Python.Enfermedad" />
+        <item index="3" class="java.lang.String" itemvalue="Python.conection (1)" />
+        <item index="4" class="java.lang.String" itemvalue="Python.conection" />
       </list>
     </recent_temporary>
   </component>
@@ -706,14 +705,14 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19591528" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19894099" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24713585" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24713585" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -764,14 +763,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DataBase/conection.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -786,7 +777,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1473555740651" expanded="true" signature="16:1436" ph="..." />
+            <marker date="1473555740651" expanded="true" signature="607:1049" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -794,7 +788,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -802,9 +795,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="8" column="31" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#19#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -812,7 +802,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -827,7 +816,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -845,7 +833,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1473555740651" expanded="true" signature="16:1436" ph="..." />
+            <marker date="1473555740651" expanded="true" signature="607:1049" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -853,7 +844,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -861,9 +851,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="8" column="31" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#19#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -871,7 +858,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -887,7 +873,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -905,7 +890,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1473555740651" expanded="true" signature="16:1436" ph="..." />
+            <marker date="1473555740651" expanded="true" signature="607:1049" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -913,7 +901,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -921,9 +908,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#19#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -938,7 +922,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -956,7 +939,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -964,9 +946,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#19#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -981,7 +960,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1028,7 +1006,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1036,7 +1013,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1044,9 +1020,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#19#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1054,7 +1027,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="410">
           <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1062,27 +1034,92 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35-32/Lib/site-packages/pymysql/cursors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="142" column="0" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Clases/Prescripcion.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35-32/Lib/site-packages/pymysql/err.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+        <state relative-caret-position="1537">
+          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataBase/conection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
-            <marker date="1473502169366" expanded="true" signature="20:885" ph="..." />
-            <marker date="1473502169366" expanded="true" signature="802:825" ph="..." />
+            <marker date="1473507284670" expanded="true" signature="372:463" ph="INSERT INTO `usuario`... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Clases/Animal.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <marker date="1473554905527" expanded="true" signature="394:709" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Clases/Dosis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <marker date="1473554905467" expanded="true" signature="13:1567" ph="..." />
+            <marker date="1473554905467" expanded="true" signature="37:281" ph="..." />
+            <marker date="1473554905467" expanded="true" signature="597:1140" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Clases/Medicamento.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="36" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+        <state relative-caret-position="204">
+          <caret line="21" column="60" selection-start-line="21" selection-start-column="60" selection-end-line="21" selection-end-column="60" />
           <folding>
-            <marker date="1473502169212" expanded="true" signature="19:605" ph="..." />
+            <marker date="1473554905353" expanded="true" signature="399:714" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Clases/Prescripcion.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="33" column="60" selection-start-line="33" selection-start-column="60" selection-end-line="33" selection-end-column="60" />
+          <folding>
+            <marker date="1473554905496" expanded="true" signature="576:1092" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Clases/Enfermedad.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utilities/Funciones.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <marker date="1473553988225" expanded="true" signature="440:522" ph="..." />
+            <marker date="1473553988225" expanded="true" signature="1606:1672" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1090,76 +1127,24 @@
     <entry file="file://$PROJECT_DIR$/Clases/Usuario.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
-          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Clases/Dosis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Clases/Animal.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+          <caret line="35" column="25" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
           <folding>
-            <marker date="1473501902502" expanded="true" signature="14:600" ph="..." />
+            <marker date="1473555740651" expanded="true" signature="16:1436" ph="..." />
+            <marker date="1473555740651" expanded="true" signature="607:1049" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Clases/Enfermedad.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utilities/Funciones.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1473508665172" expanded="true" signature="106:161" ph="..." />
-            <marker date="1473508665172" expanded="true" signature="249:328" ph="..." />
-            <marker date="1473508665172" expanded="true" signature="449:518" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataBase/conection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="14" />
-          <folding>
-            <marker date="1473507284670" expanded="true" signature="372:463" ph="INSERT INTO `usuario`... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35-32/Lib/site-packages/pymysql/err.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DataBase/Data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="105" column="25" selection-start-line="105" selection-start-column="25" selection-end-line="105" selection-end-column="25" />
+          <caret line="146" column="0" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-            <marker date="1473513875245" expanded="true" signature="621:646" ph="SELECT `*` F... usuario" />
-            <marker date="1473513875245" expanded="true" signature="1046:1070" ph="SELECT `*` F... animal" />
-            <marker date="1473513875245" expanded="true" signature="1403:1426" ph="SELECT `*` F... dosis" />
+            <marker date="1473559983470" expanded="true" signature="763:788" ph="SELECT `*` F... usuario" />
+            <marker date="1473559983470" expanded="true" signature="1186:1210" ph="SELECT `*` F... animal" />
+            <marker date="1473559983470" expanded="true" signature="1541:1564" ph="SELECT `*` F... dosis" />
+            <marker date="1473559983470" expanded="true" signature="2006:2034" ph="SELECT `*` F... enfermedad" />
           </folding>
         </state>
       </provider>

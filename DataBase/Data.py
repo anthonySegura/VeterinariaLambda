@@ -1,12 +1,12 @@
 from DataBase.conection import connection
 from utilities.Funciones import *
 from functools import reduce
-from Clases.Usuario import *
-from Clases.Animal import *
-from Clases.Dosis import *
-from Clases.Enfermedad import *
-from Clases.Medicamento import *
-from Clases.Prescripcion import *
+from Clases.Usuario import Usuario
+from Clases.Animal import Animal
+from Clases.Dosis import Dosis
+from Clases.Enfermedad import Enfermedad
+from Clases.Medicamento import Medicamento
+from Clases.Prescripcion import Prescripcion
 
 '''
     Aca se guardan las listas con los datos de las tablas de la base de datos y otras funciones que
@@ -20,6 +20,12 @@ ENFERMEDADES = []
 PRESCRIPCIONES = []
 MEDICAMENTOS = []
 
+def generador(lista):
+    i = 0
+    while i < len(lista):
+        yield lista[i]
+        i += 1
+
 def cargarUsuarios():
     with connection.cursor() as cursor:
         sql = "SELECT `*` FROM `usuario`"
@@ -27,7 +33,7 @@ def cargarUsuarios():
         x = cursor.fetchone()
         while (x != None):
             temp = Usuario()
-            insertarObjeto(temp, USERS, username = x['username'], nombre = x['nombre'], passw = x['pass'],
+            cargarObjeto(temp, USERS, username = x['username'], nombre = x['nombre'], passw = x['pass'],
                            foto = x['foto'], admin = x['admin'])
             x = cursor.fetchone()
 
@@ -38,7 +44,7 @@ def cargarAnimales():
         x = cursor.fetchone()
         while (x != None):
             temp = Animal()
-            insertarObjeto(temp, ANIMALES, nombre=x['nombre'], descripcion=x['descripcion'], foto=x['foto'])
+            cargarObjeto(temp, ANIMALES, nombre=x['nombre'], descripcion=x['descripcion'], foto=x['foto'])
             x = cursor.fetchone()
 
 def cargarDosis():
@@ -48,8 +54,18 @@ def cargarDosis():
         x = cursor.fetchone()
         while (x != None):
             temp = Dosis()
-            insertarObjeto(temp, DOSIS, id = x['ID'], animal = x['animal'], medicamento = x['medicamento'],
+            cargarObjeto(temp, DOSIS, id = x['ID'], animal = x['animal'], medicamento = x['medicamento'],
                            enfermedad = x['enfermedad'], rangoPeso = x['rango-peso'], dosis = x['dosis'])
+            x = cursor.fetchone()
+
+def cargarEnfermedades():
+    with connection.cursor() as cursor:
+        sql = "SELECT `*` FROM `enfermedad`"
+        cursor.execute(sql)
+        x = cursor.fetchone()
+        while (x != None):
+            temp = Enfermedad()
+            cargarObjeto(temp, ENFERMEDADES, nombre = x['nombre'], descripcion = x['descripcion'], foto = x['foto'])
             x = cursor.fetchone()
 
 #Carga las listas con todos los datos de la base de datos.
@@ -57,7 +73,7 @@ def cargarDatos():
     cargarUsuarios()
     cargarAnimales()
     cargarDosis()
-
+    cargarEnfermedades()
 
 def insertarSQL(nombreTabla, **valores):
     '''
@@ -74,6 +90,8 @@ def insertarSQL(nombreTabla, **valores):
         cursor.execute(sql, tupla)
         connection.commit()
 
+
+#Corregir para cuando el numero de valores sea impar
 def updateSQL(nombreTabla, where , **valores):
     '''
     :param nombreTabla: nombre exacto de la tabla
@@ -82,13 +100,13 @@ def updateSQL(nombreTabla, where , **valores):
     :return:
     '''
     keys = [k for k in valores.keys()]
+    concatenar = lambda x : reduce(lambda a , b : a + "," + b, list(map(lambda a : a + "=" + valores[a][0], x)))
     with connection.cursor() as cursor:
-        sql = "UPDATE " + nombreTabla + " SET " + reduce( lambda a , b : a + "=" + valores[a][0]
-               + ", " + b + "=" + valores[b][0], keys) + " WHERE " + str(where[0]) + "=" + str(where[1])
+        sql = "UPDATE " + nombreTabla + " SET " + concatenar(keys) + " WHERE " + str(where[0]) + "=" + str(where[1])
         tupla = tuple([valores[i][1] for i in valores] + [where[2]])
+        print(sql , " " , tupla)
         cursor.execute(sql, tupla)
         connection.commit()
-
 
 def deleteSQL(nombreTable, where):
     '''
@@ -101,6 +119,28 @@ def deleteSQL(nombreTable, where):
         cursor.execute(sql, (where[2]))
         connection.commit()
 
-#insertarSQL("enfermedad", nombre = ["%s", "Diabetes"], descripcion = ["%s", "muy mala"], foto = ["%s", " "])
-#updateSQL("enfermedad" , ("nombre", "%s", "Cancer") , nombre=["%s", "Rabia"], descripcion = ["%s" , "Rba"])
-#deleteSQL("enfermedad", ("nombre","%s" ,"Rabia"))
+def actualizarTablaBD(nombreTabla, lista):
+    #Cada elemento de la lista se obtiene con el generador
+    g = generador(lista)
+    for i in range(len(lista)):
+        objeto = g.__next__()
+        where = (objeto.getIDIdentifier(), "%s", objeto.getID())
+        if objeto.STATUS["borrar"]:
+            deleteSQL(nombreTabla, where)
+
+        elif objeto.STATUS["actualizar"][0]:
+            print(objeto.STATUS["actualizar"][1])
+            updateSQL(nombreTabla, where, **objeto.STATUS["actualizar"][1])
+
+        elif objeto.STATUS["insertar"]:
+            insertarSQL(nombreTabla, **objeto.getColumnsData())
+
+
+def actualizarBD():
+    actualizarTablaBD("usuario", USERS)
+    actualizarTablaBD("animal", ANIMALES)
+    actualizarTablaBD("dosis", DOSIS)
+    actualizarTablaBD("medicamentos", MEDICAMENTOS)
+    actualizarTablaBD("prescripcion", PRESCRIPCIONES)
+    actualizarTablaBD("enfermedad", ENFERMEDADES)
+
