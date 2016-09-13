@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prescripciones</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/CSS/animals.css') }}">
+</head>
+<body>
+
+  <div class="container">
+      <form action="/prescripcion" method="post" class="Busqueda">
+        <input type="text" name="text" value="{{ request.form.nombre }}">
+        <input type="submit" name="submit" value="Consultar" class="Btn">
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Animal</th>
+            <th>Enfermedad</th>
+            <th>Peso(kg)</th>
+            <th>dosis</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for a in prescrip %}
+          <tr>
+            <td>{{ a.id }}</td>
+            <td>{{ a.usuario}}</td>
+            <td><a href="{{url_for('animals1',text=a.animal)}}">{{a.animal}}</a></td>
+              <td>{{a.enfermedad}}</td>
+              <td>{{a.peso}}</td>
+              <td>{{a.dosis}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <ul class="pagination">
+    {{ pagination.links }}
+    </ul>
+  </div>
+</body>
+</html>

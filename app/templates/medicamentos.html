@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medicamentos</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/CSS/animals.css') }}">
+</head>
+<body>
+
+  <div class="container">
+      <form action="/medicamentos" method="post" class="Busqueda">
+        <input type="text" name="text" value="{{ request.form.nombre }}">
+        <input type="submit" name="submit" value="Consultar" class="Btn">
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+          <th>Foto</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for medi in medicacion %}
+          <tr>
+            <td>{{ medi.nombre }}</td>
+            <td>{{ medi.descripcion }}</td>
+            <td><img src="{{ medi.foto }}" alt="" border=3 height=70 width=70</img></td>
+
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <ul class="pagination">
+    {{ pagination.links }}
+    </ul>
+  </div>
+</body>
+</html>

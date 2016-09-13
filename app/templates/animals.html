@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animals</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/CSS/animals.css') }}">
+</head>
+<body>
+    {{ pagination.info }}
+  <div class="container">
+    {%if not text %}
+    <form action="/animals" method="post" class="Busqueda">
+        <input type="text" name="text" value="{{ request.form.text }}">
+        <input type="submit" name="submit" value="Consultar" class="Btn">
+    </form>
+    {% endif %}
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+          <th>Foto</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for anim in animals %}
+          <tr>
+            
+            <td>{{ anim.nombre }}</td>
+            <td>{{ anim.descripcion }}</td>
+            <td><img src="{{ anim.foto }}" alt="" border=3 height=70 width=70</img></td>
+
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <ul class="pagination">
+    {{ pagination.links }}
+    </ul>
+  </div>
+</body>
+</html>
+

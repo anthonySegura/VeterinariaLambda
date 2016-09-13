@@ -5,6 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Marico</h1>
+    {% if xD == "Hola" %}
+    Marico
+    {%endif%}
+    <form action="/marico" method="post">
+        <input type="text" name="text" value="{{ request.form.text }}">
+        <input type="submit" name="submit" value="Login" class="loginBtn">
+    </form>
+    {{lol}}
+
 </body>
 </html>
