@@ -7,6 +7,7 @@ class Usuario():
         self.admin = 0
         #Marca que indica si se debe borrar o actualizar el registro original en la base de datos.
         self.STATUS = {"borrar": False, "actualizar": [False, {}, "idAnterior"], "insertar": False}
+        self.nombreTabla = ""
 
     def crear(self, **kwargs):
         self.username = kwargs["username"]
@@ -14,6 +15,7 @@ class Usuario():
         self.passw = kwargs["passw"]
         self.foto = kwargs["foto"]
         self.admin = kwargs["admin"]
+        self.nombreTabla = kwargs["nombreTabla"]
 
     def modificar(self, **kwargs):
         keys = kwargs.keys()

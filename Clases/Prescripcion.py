@@ -8,6 +8,7 @@ class Prescripcion:
         self.peso = 0
         self.dosis = ""
         self.STATUS = {"borrar": False, "actualizar": [False, {}, "idAnterior"], "insertar": False}
+        self.nombreTabla = ""
 
     def crear(self, **kwargs):
         self.id = kwargs["id"]
@@ -16,6 +17,7 @@ class Prescripcion:
         self.enfermedad = kwargs["enfermedad"]
         self.peso = kwargs["peso"]
         self.dosis = kwargs["dosis"]
+        self.nombreTabla = kwargs["nombreTabla"]
 
     def modificar(self, **kwargs):
         keys = kwargs.keys()

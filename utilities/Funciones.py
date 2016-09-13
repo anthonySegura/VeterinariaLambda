@@ -12,18 +12,20 @@ def cargarObjeto(objeto, lista, **atributos):
     lista.append(objeto)
 
 #Modifica los objetos con polimorfismo
+#!Tratar de hacerlo funcional
 def modificarObjeto(objeto,listas , **nuevosAtributos):
     id = objeto.getID()
     objeto.STATUS["actualizar"][0] = True
     objeto.STATUS["actualizar"][2] = id
     objeto.modificar(**nuevosAtributos)
-
+    #Se buscan en todas las listas los objetos que tengan al objeto modificado como llave foranea
     for l in listas:
         for j in l:
            for x in list(j.getColumnsData().values()):
                if id in x:
                    print(objeto.getIDIdentifier(), " ", objeto.getID())
-                   j.modificar(**{objeto.getIDIdentifier() : objeto.getID()})
+                   #una vez encontrado el objeto se actualiza la llave foranea con el valor actual
+                   j.modificar(**{objeto.nombreTabla : objeto.getID()})
 
 
 #Verifica si un objeto se encuentra en la lista

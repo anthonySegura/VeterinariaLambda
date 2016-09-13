@@ -1,4 +1,5 @@
 from DataBase.conection import connection
+import pymysql.err
 from utilities.Funciones import *
 from functools import reduce
 from Clases.Usuario import Usuario
@@ -20,7 +21,7 @@ ENFERMEDADES = []
 PRESCRIPCIONES = []
 MEDICAMENTOS = []
 
-TODO = [USERS, ANIMALES, DOSIS, ENFERMEDADES, PRESCRIPCIONES, MEDICAMENTOS]
+LISTAS = [USERS, ANIMALES, DOSIS, ENFERMEDADES, PRESCRIPCIONES, MEDICAMENTOS]
 
 def generador(lista):
     i = 0
@@ -36,7 +37,7 @@ def cargarUsuarios():
         while (x != None):
             temp = Usuario()
             cargarObjeto(temp, USERS, username = x['username'], nombre = x['nombre'], passw = x['pass'],
-                           foto = x['foto'], admin = x['admin'])
+                           foto = x['foto'], admin = x['admin'], nombreTabla = "usuario")
             x = cursor.fetchone()
 
 def cargarAnimales():
@@ -46,7 +47,7 @@ def cargarAnimales():
         x = cursor.fetchone()
         while (x != None):
             temp = Animal()
-            cargarObjeto(temp, ANIMALES, nombre=x['nombre'], descripcion=x['descripcion'], foto=x['foto'])
+            cargarObjeto(temp, ANIMALES, nombre=x['nombre'], descripcion=x['descripcion'], foto=x['foto'], nombreTabla = "animal")
             x = cursor.fetchone()
 
 def cargarDosis():
@@ -57,7 +58,7 @@ def cargarDosis():
         while (x != None):
             temp = Dosis()
             cargarObjeto(temp, DOSIS, id = x['ID'], animal = x['animal'], medicamento = x['medicamento'],
-                           enfermedad = x['enfermedad'], rangoPeso = x['rango-peso'], dosis = x['dosis'])
+                           enfermedad = x['enfermedad'], rangoPeso = x['rango-peso'], dosis = x['dosis'], nombreTabla = "dosis")
             x = cursor.fetchone()
 
 def cargarEnfermedades():
@@ -67,7 +68,28 @@ def cargarEnfermedades():
         x = cursor.fetchone()
         while (x != None):
             temp = Enfermedad()
-            cargarObjeto(temp, ENFERMEDADES, nombre = x['nombre'], descripcion = x['descripcion'], foto = x['foto'])
+            cargarObjeto(temp, ENFERMEDADES, nombre = x['nombre'], descripcion = x['descripcion'], foto = x['foto'], nombreTabla = "enfermedad")
+            x = cursor.fetchone()
+
+def cargarPrescripciones():
+    with connection.cursor() as cursor:
+        sql = "SELECT `*` FROM `prescripcion`"
+        cursor.execute(sql)
+        x = cursor.fetchone()
+        while (x != None):
+            temp = Prescripcion()
+            cargarObjeto(temp, PRESCRIPCIONES, id = x['id'], usuario = x['usuario'], animal = x['animal'], enfermedad = x['enfermedad'], peso = x['peso'],
+                         dosis = x['dosis'], nombreTabla = "prescripcion")
+            x = cursor.fetchone()
+
+def cargarMedicamentos():
+    with connection.cursor() as cursor:
+        sql = "SELECT `*` FROM `medicamentos`"
+        cursor.execute(sql)
+        x = cursor.fetchone()
+        while (x != None):
+            temp = Medicamento()
+            cargarObjeto(temp, MEDICAMENTOS, nombre = x['nombre'], descripcion = x['descripcion'], foto = x['foto'], nombreTabla = "medicamentos")
             x = cursor.fetchone()
 
 #Carga las listas con todos los datos de la base de datos.
@@ -76,6 +98,8 @@ def cargarDatos():
     cargarAnimales()
     cargarDosis()
     cargarEnfermedades()
+    cargarPrescripciones()
+    cargarMedicamentos()
 
 def insertarSQL(nombreTabla, **valores):
     '''
@@ -90,25 +114,34 @@ def insertarSQL(nombreTabla, **valores):
               + ") " + "VALUES (" + reduce(lambda x, y: x + "," + y, [valores[i][0] for i in keys]) + ")"
         print(sql)
         tupla = tuple([valores[i][1] for i in valores])
-        cursor.execute(sql, tupla)
-        connection.commit()
+        try:
+            cursor.execute(sql, tupla)
+            connection.commit()
+        except pymysql.err.ProgrammingError as error:
+            codigo, msj = error.args
+            print("Error en MySQL. Codigo de error -> ", codigo, " Mensaje ->", msj)
+            return False
 
 
-#Corregir para cuando el numero de valores sea impar
 def updateSQL(nombreTabla, where , **valores):
     '''
     :param nombreTabla: nombre exacto de la tabla
     :param valores: claves-valor ; ejemplo ["username", %s, "Rata Blanca"]. El valor es una lista, nombre de columna en comillas
     :param where: tupla ; ejemplo (username, %s , "Rata Blanca")
-    :return:
+    :return: False en caso de error
     '''
     keys = [k for k in valores.keys()]
     concatenar = lambda x : reduce(lambda a , b : a + "," + b, list(map(lambda a : a + "=" + valores[a][0], x)))
     with connection.cursor() as cursor:
         sql = "UPDATE " + nombreTabla + " SET " + concatenar(keys) + " WHERE " + str(where[0]) + "=" + str(where[1])
         tupla = tuple([valores[i][1] for i in valores] + [where[2]])
-        cursor.execute(sql, tupla)
-        connection.commit()
+        try:
+            cursor.execute(sql, tupla)
+            connection.commit()
+        except pymysql.err.ProgrammingError as error:
+            codigo, msj = error.args
+            print("Error en MySQL. Codigo de error -> ", codigo, " Mensaje ->", msj)
+            return False
 
 def deleteSQL(nombreTable, where):
     '''
@@ -118,8 +151,13 @@ def deleteSQL(nombreTable, where):
     '''
     with connection.cursor() as cursor:
         sql = "DELETE FROM " + nombreTable + " WHERE " + str(where[0]) + "=" + str(where[1])
-        cursor.execute(sql, (where[2]))
-        connection.commit()
+        try:
+            cursor.execute(sql, (where[2]))
+            connection.commit()
+        except pymysql.err.ProgrammingError as error:
+            codigo, msj = error.args
+            print("Error en MySQL. Codigo de error -> ", codigo, " Mensaje ->", msj)
+            return False
 
 def actualizarTablaBD(nombreTabla, lista):
     #Cada elemento de la lista se obtiene con el generador
@@ -146,13 +184,3 @@ def actualizarBD():
     actualizarTablaBD("prescripcion", PRESCRIPCIONES)
     actualizarTablaBD("enfermedad", ENFERMEDADES)
 
-cargarDatos()
-#modificarObjeto(ANIMALES[buscarObjeto("Taltuza", ANIMALES)],TODO, **{"descripcion" : "Tardigrado" } )
-#insertarSQL("dosis", **{"id" : ["%s","4/20"], "animal" : ["%s","Caballo"], "medicamento" : ["%s", "Paracetamol"], "enfermedad" : ["%s","Tufillo"], "rango-peso" : ["%s", "10-20KG"],"dosis" : ["%s","20mg/8hrs"]})
-#insertarObjeto(Dosis(), DOSIS, id = "4/20", animal = "Caballo", medicamento = "Paracetamol", enfermedad = "Tufillo", rangoPeso = "10-20KG", dosis = "20mg/8hrs" )
-
-o = buscarPorID("Caballo",  ANIMALES)
-modificarObjeto(o, TODO, nombre = "Taltuza")
-for d in DOSIS:
-    print(d.animal)
-#actualizarBD()

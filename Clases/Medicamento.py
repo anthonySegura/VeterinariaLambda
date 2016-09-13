@@ -5,11 +5,13 @@ class Medicamento:
         self.descripcion = ""
         self.foto = ""
         self.STATUS = {"borrar": False, "actualizar": [False, {}, "idAnterior"], "insertar": False}
+        self.nombreTabla = ""
 
     def crear(self, **kwargs):
         self.nombre = kwargs["nombre"]
         self.descripcion = kwargs["descripcion"]
         self.foto = kwargs["foto"]
+        self.nombreTabla = kwargs["nombreTabla"]
 
     def modificar(self, **kwargs):
         keys = kwargs.keys()
