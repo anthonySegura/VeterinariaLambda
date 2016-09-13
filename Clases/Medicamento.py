@@ -4,7 +4,7 @@ class Medicamento:
         self.nombre = ""
         self.descripcion = ""
         self.foto = ""
-        self.STATUS = {"borrar": False, "actualizar": [False, {}], "insertar" : False}
+        self.STATUS = {"borrar": False, "actualizar": [False, {}, "idAnterior"], "insertar": False}
 
     def crear(self, **kwargs):
         self.nombre = kwargs["nombre"]

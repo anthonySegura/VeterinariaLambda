@@ -4,7 +4,7 @@ class Animal:
         self.nombre = ""
         self.descripcion = ""
         self.foto = ""
-        self.STATUS = {"borrar": False, "actualizar": [False, {}], "insertar" : False}
+        self.STATUS = {"borrar": False, "actualizar": [False, {}, "idAnterior"], "insertar" : False}
 
     def crear(self, **kwargs):
         self.nombre = kwargs["nombre"]
@@ -20,6 +20,7 @@ class Animal:
         if "foto" in keys:
             self.foto = kwargs["foto"]
         self.STATUS["actualizar"][1] = self.getColumnsData()
+
 
     def getID(self):
         return self.nombre

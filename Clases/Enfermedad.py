@@ -4,7 +4,7 @@ class Enfermedad:
         self.nombre = ""
         self.descripcion = ""
         self.foto = ""
-        self.STATUS = {"borrar": False, "actualizar": [False, {}], "insertar" : False}  #Si hay tiempo cambiar por una clase
+        self.STATUS = {"borrar": False, "actualizar": [False, {}, "idAnterior"], "insertar": False}
 
     def crear(self, **kwargs):
         self.nombre = kwargs["nombre"]

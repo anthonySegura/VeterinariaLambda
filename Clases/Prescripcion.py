@@ -7,7 +7,7 @@ class Prescripcion:
         self.enfermedad = ""
         self.peso = 0
         self.dosis = ""
-        self.STATUS = {"borrar": False, "actualizar": [False, {}], "insertar" : False}
+        self.STATUS = {"borrar": False, "actualizar": [False, {}, "idAnterior"], "insertar": False}
 
     def crear(self, **kwargs):
         self.id = kwargs["id"]

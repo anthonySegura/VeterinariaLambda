@@ -20,6 +20,8 @@ ENFERMEDADES = []
 PRESCRIPCIONES = []
 MEDICAMENTOS = []
 
+TODO = [USERS, ANIMALES, DOSIS, ENFERMEDADES, PRESCRIPCIONES, MEDICAMENTOS]
+
 def generador(lista):
     i = 0
     while i < len(lista):
@@ -86,6 +88,7 @@ def insertarSQL(nombreTabla, **valores):
     with connection.cursor() as cursor:
         sql = "INSERT INTO " + nombreTabla + " (" + reduce(lambda x, y: x + "," + y, keys) \
               + ") " + "VALUES (" + reduce(lambda x, y: x + "," + y, [valores[i][0] for i in keys]) + ")"
+        print(sql)
         tupla = tuple([valores[i][1] for i in valores])
         cursor.execute(sql, tupla)
         connection.commit()
@@ -104,7 +107,6 @@ def updateSQL(nombreTabla, where , **valores):
     with connection.cursor() as cursor:
         sql = "UPDATE " + nombreTabla + " SET " + concatenar(keys) + " WHERE " + str(where[0]) + "=" + str(where[1])
         tupla = tuple([valores[i][1] for i in valores] + [where[2]])
-        print(sql , " " , tupla)
         cursor.execute(sql, tupla)
         connection.commit()
 
@@ -129,8 +131,8 @@ def actualizarTablaBD(nombreTabla, lista):
             deleteSQL(nombreTabla, where)
 
         elif objeto.STATUS["actualizar"][0]:
-            print(objeto.STATUS["actualizar"][1])
-            updateSQL(nombreTabla, where, **objeto.STATUS["actualizar"][1])
+            whereUpdate = (objeto.getIDIdentifier(), "%s", objeto.STATUS["actualizar"][2])
+            updateSQL(nombreTabla, whereUpdate, **objeto.getColumnsData())
 
         elif objeto.STATUS["insertar"]:
             insertarSQL(nombreTabla, **objeto.getColumnsData())
@@ -144,3 +146,13 @@ def actualizarBD():
     actualizarTablaBD("prescripcion", PRESCRIPCIONES)
     actualizarTablaBD("enfermedad", ENFERMEDADES)
 
+cargarDatos()
+#modificarObjeto(ANIMALES[buscarObjeto("Taltuza", ANIMALES)],TODO, **{"descripcion" : "Tardigrado" } )
+#insertarSQL("dosis", **{"id" : ["%s","4/20"], "animal" : ["%s","Caballo"], "medicamento" : ["%s", "Paracetamol"], "enfermedad" : ["%s","Tufillo"], "rango-peso" : ["%s", "10-20KG"],"dosis" : ["%s","20mg/8hrs"]})
+#insertarObjeto(Dosis(), DOSIS, id = "4/20", animal = "Caballo", medicamento = "Paracetamol", enfermedad = "Tufillo", rangoPeso = "10-20KG", dosis = "20mg/8hrs" )
+
+o = buscarPorID("Caballo",  ANIMALES)
+modificarObjeto(o, TODO, nombre = "Taltuza")
+for d in DOSIS:
+    print(d.animal)
+#actualizarBD()

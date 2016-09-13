@@ -6,7 +6,7 @@ class Usuario():
         self.foto = ""
         self.admin = 0
         #Marca que indica si se debe borrar o actualizar el registro original en la base de datos.
-        self.STATUS = {"borrar": False, "actualizar": [False, {}], "insertar" : False}
+        self.STATUS = {"borrar": False, "actualizar": [False, {}, "idAnterior"], "insertar": False}
 
     def crear(self, **kwargs):
         self.username = kwargs["username"]
@@ -27,7 +27,7 @@ class Usuario():
             self.foto = kwargs["foto"]
         if "admin" in keys:
             self.admin = kwargs["admin"]
-        self.STATUS["insertar"][1] = self.getColumnsData()
+        self.STATUS["actualizar"][1] = self.getColumnsData()
 
     def getID(self):
         return self.username
