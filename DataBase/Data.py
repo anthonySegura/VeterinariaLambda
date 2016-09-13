@@ -1,12 +1,13 @@
 from DataBase.conection import connection
+import pymysql.err
 from utilities.Funciones import *
 from functools import reduce
-from Clases.Usuario import *
-from Clases.Animal import *
-from Clases.Dosis import *
-from Clases.Enfermedad import *
-from Clases.Medicamento import *
-from Clases.Prescripcion import *
+from Clases.Usuario import Usuario
+from Clases.Animal import Animal
+from Clases.Dosis import Dosis
+from Clases.Enfermedad import Enfermedad
+from Clases.Medicamento import Medicamento
+from Clases.Prescripcion import Prescripcion
 
 '''
     Aca se guardan las listas con los datos de las tablas de la base de datos y otras funciones que
@@ -20,6 +21,14 @@ ENFERMEDADES = []
 PRESCRIPCIONES = []
 MEDICAMENTOS = []
 
+LISTAS = [USERS, ANIMALES, DOSIS, ENFERMEDADES, PRESCRIPCIONES, MEDICAMENTOS]
+
+def generador(lista):
+    i = 0
+    while i < len(lista):
+        yield lista[i]
+        i += 1
+
 def cargarUsuarios():
     with connection.cursor() as cursor:
         sql = "SELECT `*` FROM `usuario`"
@@ -27,8 +36,8 @@ def cargarUsuarios():
         x = cursor.fetchone()
         while (x != None):
             temp = Usuario()
-            insertarObjeto(temp, USERS, username = x['username'], nombre = x['nombre'], passw = x['pass'],
-                           foto = x['foto'], admin = x['admin'])
+            cargarObjeto(temp, USERS, username = x['username'], nombre = x['nombre'], passw = x['pass'],
+                           foto = x['foto'], admin = x['admin'], nombreTabla = "usuario")
             x = cursor.fetchone()
 
 def cargarAnimales():
@@ -38,28 +47,7 @@ def cargarAnimales():
         x = cursor.fetchone()
         while (x != None):
             temp = Animal()
-            insertarObjeto(temp, ANIMALES, nombre=x['nombre'], descripcion=x['descripcion'], foto=x['foto'])
-            x = cursor.fetchone()
-
-def cargarMedicamentos():
-    with connection.cursor() as cursor:
-        sql = "SELECT `*` FROM `medicamentos`"
-        cursor.execute(sql)
-        x = cursor.fetchone()
-        while (x != None):
-            temp = Medicamento()
-            insertarObjeto(temp, MEDICAMENTOS, nombre=x['nombre'], descripcion=x['descripcion'], foto=x['foto'])
-            x = cursor.fetchone()
-
-def cargarPrescripciones():
-    with connection.cursor() as cursor:
-        sql = "SELECT `*` FROM `prescripcion`"
-        cursor.execute(sql)
-        x = cursor.fetchone()
-        while (x != None):
-            temp = Prescripcion()
-            insertarObjeto(temp, PRESCRIPCIONES, id = x['id'], usuario = x['usuario'], animal = x['animal'],
-                           enfermedad = x['enfermedad'], peso = x['peso'], dosis = x['dosis'])
+            cargarObjeto(temp, ANIMALES, nombre=x['nombre'], descripcion=x['descripcion'], foto=x['foto'], nombreTabla = "animal")
             x = cursor.fetchone()
 
 def cargarDosis():
@@ -69,21 +57,49 @@ def cargarDosis():
         x = cursor.fetchone()
         while (x != None):
             temp = Dosis()
-            insertarObjeto(temp, DOSIS, id = x['ID'], animal = x['animal'], medicamento = x['medicamento'],
-                           enfermedad = x['enfermedad'], rangoPeso = x['rangoPeso'], dosis = x['dosis'])
+            cargarObjeto(temp, DOSIS, id = x['ID'], animal = x['animal'], medicamento = x['medicamento'],
+                           enfermedad = x['enfermedad'], rangoPeso = x['rangoPeso'], dosis = x['dosis'], nombreTabla = "dosis")
             x = cursor.fetchone()
 
+def cargarEnfermedades():
+    with connection.cursor() as cursor:
+        sql = "SELECT `*` FROM `enfermedad`"
+        cursor.execute(sql)
+        x = cursor.fetchone()
+        while (x != None):
+            temp = Enfermedad()
+            cargarObjeto(temp, ENFERMEDADES, nombre = x['nombre'], descripcion = x['descripcion'], foto = x['foto'], nombreTabla = "enfermedad")
+            x = cursor.fetchone()
 
+def cargarPrescripciones():
+    with connection.cursor() as cursor:
+        sql = "SELECT `*` FROM `prescripcion`"
+        cursor.execute(sql)
+        x = cursor.fetchone()
+        while (x != None):
+            temp = Prescripcion()
+            cargarObjeto(temp, PRESCRIPCIONES, id = x['id'], usuario = x['usuario'], animal = x['animal'], enfermedad = x['enfermedad'], peso = x['peso'],
+                         dosis = x['dosis'], nombreTabla = "prescripcion")
+            x = cursor.fetchone()
+
+def cargarMedicamentos():
+    with connection.cursor() as cursor:
+        sql = "SELECT `*` FROM `medicamentos`"
+        cursor.execute(sql)
+        x = cursor.fetchone()
+        while (x != None):
+            temp = Medicamento()
+            cargarObjeto(temp, MEDICAMENTOS, nombre = x['nombre'], descripcion = x['descripcion'], foto = x['foto'], nombreTabla = "medicamentos")
+            x = cursor.fetchone()
 
 #Carga las listas con todos los datos de la base de datos.
 def cargarDatos():
     cargarUsuarios()
     cargarAnimales()
     cargarDosis()
-    cargarMedicamentos()
+    cargarEnfermedades()
     cargarPrescripciones()
-
-
+    cargarMedicamentos()
 
 def insertarSQL(nombreTabla, **valores):
     '''
@@ -96,25 +112,36 @@ def insertarSQL(nombreTabla, **valores):
     with connection.cursor() as cursor:
         sql = "INSERT INTO " + nombreTabla + " (" + reduce(lambda x, y: x + "," + y, keys) \
               + ") " + "VALUES (" + reduce(lambda x, y: x + "," + y, [valores[i][0] for i in keys]) + ")"
+        print(sql)
         tupla = tuple([valores[i][1] for i in valores])
-        cursor.execute(sql, tupla)
-        connection.commit()
+        try:
+            cursor.execute(sql, tupla)
+            connection.commit()
+        except pymysql.err.ProgrammingError as error:
+            codigo, msj = error.args
+            print("Error en MySQL. Codigo de error -> ", codigo, " Mensaje ->", msj)
+            return False
+
 
 def updateSQL(nombreTabla, where , **valores):
     '''
     :param nombreTabla: nombre exacto de la tabla
     :param valores: claves-valor ; ejemplo ["username", %s, "Rata Blanca"]. El valor es una lista, nombre de columna en comillas
     :param where: tupla ; ejemplo (username, %s , "Rata Blanca")
-    :return:
+    :return: False en caso de error
     '''
     keys = [k for k in valores.keys()]
+    concatenar = lambda x : reduce(lambda a , b : a + "," + b, list(map(lambda a : a + "=" + valores[a][0], x)))
     with connection.cursor() as cursor:
-        sql = "UPDATE " + nombreTabla + " SET " + reduce( lambda a , b : a + "=" + valores[a][0]
-               + ", " + b + "=" + valores[b][0], keys) + " WHERE " + str(where[0]) + "=" + str(where[1])
+        sql = "UPDATE " + nombreTabla + " SET " + concatenar(keys) + " WHERE " + str(where[0]) + "=" + str(where[1])
         tupla = tuple([valores[i][1] for i in valores] + [where[2]])
-        cursor.execute(sql, tupla)
-        connection.commit()
-
+        try:
+            cursor.execute(sql, tupla)
+            connection.commit()
+        except pymysql.err.ProgrammingError as error:
+            codigo, msj = error.args
+            print("Error en MySQL. Codigo de error -> ", codigo, " Mensaje ->", msj)
+            return False
 
 def deleteSQL(nombreTable, where):
     '''
@@ -124,16 +151,36 @@ def deleteSQL(nombreTable, where):
     '''
     with connection.cursor() as cursor:
         sql = "DELETE FROM " + nombreTable + " WHERE " + str(where[0]) + "=" + str(where[1])
-        cursor.execute(sql, (where[2]))
-        connection.commit()
+        try:
+            cursor.execute(sql, (where[2]))
+            connection.commit()
+        except pymysql.err.ProgrammingError as error:
+            codigo, msj = error.args
+            print("Error en MySQL. Codigo de error -> ", codigo, " Mensaje ->", msj)
+            return False
 
-#ID,animal,medicamentos,enfermedad,rango-peso,dosis
+def actualizarTablaBD(nombreTabla, lista):
+    #Cada elemento de la lista se obtiene con el generador
+    g = generador(lista)
+    for i in range(len(lista)):
+        objeto = g.__next__()
+        where = (objeto.getIDIdentifier(), "%s", objeto.getID())
+        if objeto.STATUS["borrar"]:
+            deleteSQL(nombreTabla, where)
 
-#insertarSQL("dosis", **{"id" : ["%s", "4/20"], "animal" : ["%s", "Caballo"], "medicamento" : ["%s", "AINIL"], "enfermedad" : ["%s", "BRUCELÓSIS"], "rangoPeso" : ["%s", "100/50kg"],"dosis": ["%s","Dos al dia"]})
-#insertarSQL("dosis", **{"id" : ["%s", "4/21"], "animal" : ["%s", "Perro"], "medicamento" : ["%s", "ANESMOL"], "enfermedad" : ["%s", "BRUCELÓSIS"], "rangoPeso" : ["%s", "20/10kg"],"dosis": ["%s","Dos al dia"]})
-#insertarSQL("dosis", **{"id" : ["%s", "4/22"], "animal" : ["%s", "Vaca"], "medicamento" : ["%s", "BAYTRIL"], "enfermedad" : ["%s", "BRUCELÓSIS"], "rangoPeso" : ["%s", "300/100kg"],"dosis": ["%s","Dos al dia"]})
-#insertarSQL("dosis", **{"id" : ["%s", "4/23"], "animal" : ["%s", "Llama"], "medicamento" : ["%s", "ACTIFUCIN"], "enfermedad" : ["%s", "BRUCELÓSIS"], "rangoPeso" : ["%s", "200/50kg"],"dosis": ["%s","Dos al dia"]})
-#insertarSQL("dosis", **{"id" : ["%s", "4/24"], "animal" : ["%s", "Caballo5"], "medicamento" : ["%s", "DERFEN"], "enfermedad" : ["%s", "BRUCELÓSIS"], "rangoPeso" : ["%s", "200/100kg"],"dosis": ["%s","Dos al dia"]})
+        elif objeto.STATUS["actualizar"][0]:
+            whereUpdate = (objeto.getIDIdentifier(), "%s", objeto.STATUS["actualizar"][2])
+            updateSQL(nombreTabla, whereUpdate, **objeto.getColumnsData())
 
-#updateSQL("enfermedad" , ("nombre", "%s", "Cancer") , nombre=["%s", "Rabia"], descripcion = ["%s" , "Rba"])
-#deleteSQL("enfermedad", ("nombre","%s" ,"Rabia"))
+        elif objeto.STATUS["insertar"]:
+            insertarSQL(nombreTabla, **objeto.getColumnsData())
+
+
+def actualizarBD():
+    actualizarTablaBD("usuario", USERS)
+    actualizarTablaBD("animal", ANIMALES)
+    actualizarTablaBD("dosis", DOSIS)
+    actualizarTablaBD("medicamentos", MEDICAMENTOS)
+    actualizarTablaBD("prescripcion", PRESCRIPCIONES)
+    actualizarTablaBD("enfermedad", ENFERMEDADES)
+

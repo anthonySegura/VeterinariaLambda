@@ -1,5 +1,4 @@
 dividir = lambda lista, n : [lista[i:i+n] for i in range(0, len(lista) , n)]
-a=[3,4]
 
 #Insercion de los objetos en las listas con polimorfismo
 def insertarObjeto(objeto, lista, **atributos):
@@ -13,17 +12,21 @@ def cargarObjeto(objeto, lista, **atributos):
     lista.append(objeto)
 
 #Modifica los objetos con polimorfismo
+#!Tratar de hacerlo funcional
 def modificarObjeto(objeto,listas , **nuevosAtributos):
     id = objeto.getID()
     objeto.STATUS["actualizar"][0] = True
+    objeto.STATUS["actualizar"][2] = id
     objeto.modificar(**nuevosAtributos)
-    '''
+    #Se buscan en todas las listas los objetos que tengan al objeto modificado como llave foranea
     for l in listas:
         for j in l:
            for x in list(j.getColumnsData().values()):
                if id in x:
-                   j.modificar(**{objeto.getIDIdentifier() : objeto.getID()})
-    '''
+                   print(objeto.getIDIdentifier(), " ", objeto.getID())
+                   #una vez encontrado el objeto se actualiza la llave foranea con el valor actual
+                   j.modificar(**{objeto.nombreTabla : objeto.getID()})
+
 
 #Verifica si un objeto se encuentra en la lista
 #Regresa True si el objeto esta en la lista

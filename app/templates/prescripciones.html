@@ -27,7 +27,7 @@
         {% for a in prescrip %}
           <tr>
             <td>{{ a.id }}</td>
-            <td>{{ a.usuario}}</td>
+            <td><a href="{{url_for('usuarios1',text=a.usuario)}}">{{ a.usuario}}</a></td>
             <td><a href="{{url_for('animals1',text=a.animal)}}">{{a.animal}}</a></td>
               <td>{{a.enfermedad}}</td>
               <td>{{a.peso}}</td>

@@ -4,6 +4,8 @@ from DataBase.Data import *
 from flask_paginate import Pagination
 from utilities.Funciones import *
 
+sesion=None
+
 @app.route('/',methods=['GET','POST'])
 @app.route('/login',methods=['GET','POST'])
 def login():
@@ -112,25 +114,95 @@ def prescripcion():
                            )
 
 
-@app.route('/usuarios')
+@app.route('/usuarios',methods=['GET','POST'])
 def usuarios():
-    search = False
-    q = request.args.get('q')
-    if q:
-        search = True
+
 
     page = request.args.get('page', type=int, default=1)
 
     user = dividir(USERS, 5)[page - 1]
 
-    pagination = Pagination(page=page, per_page=5, display_msg="Pagina " + str(page) + ". Registros Totales " + str(len(USERS)), total=len(USERS), search=search, record_name='Animals')
+    pagination = Pagination(page=page, per_page=5, display_msg="Pagina " + str(page) + ". Registros Totales " + str(len(USERS)), total=len(USERS), record_name='Animals')
     if request.method == 'POST':
         if request.form['text'] == "":
             return redirect(url_for('usuarios'))
         user = [buscarPorID(request.form['text'], USERS)]
-        pagination = Pagination(page=page, per_page=5, display_msg="Pagina " + str(page) + ". Registros Totales " + str(len(user)), total=len(user), search=search, record_name='Animals')
+        pagination = Pagination(page=page, per_page=5, display_msg="Pagina " + str(page) + ". Registros Totales " + str(len(user)), total=len(user), record_name='Animals')
 
     return render_template('users.html',
                            user=user,
                            pagination=pagination,
                            )
+
+@app.route('/usuarios/<text>',methods=['GET','POST'])
+def usuarios1(text):
+    page = request.args.get('page', type=int, default=1)
+    user = [buscarPorID(text, USERS)]
+    pagination = Pagination(page=page, per_page=5, display_msg="Pagina " + str(page) + ". Registros Totales " + str(len(user)), total=len(user), record_name='usuarios')
+    return render_template('users.html',
+                           user=user,
+                           pagination=pagination,text=text
+                           )
+
+@app.route('/registroUsuario',methods=['GET','POST'])
+def registroUsuario():
+    lol=""
+    username=""
+    password=""
+    nombre=""
+    foto=""
+    if request.method == 'POST':
+        if verificarPorID(request.form['username'],USERS):
+            lol="El Usuario ya esta registrado"
+        elif request.form['username']=="" or request.form['password']=="" or request.form['nombre']=="":
+            lol="Faltan campos sin completar"
+
+        else:
+            foto="http://www.getsmartcontent.com/content/uploads/2014/08/shutterstock_149293433.jpg" if request.form['foto']=="" else request.form['foto']
+            username=request.form['username']
+            password=request.form['password']
+            nombre=request.form['nombre']
+            insertarObjeto(Usuario(), USERS, username = username, nombre = nombre, passw = password, foto = foto, admin = 0,nombreTabla="usuario")
+            actualizarBD()
+            lol="Registro Completado"
+    return render_template('registroUsuario.html',lol=lol)
+
+@app.route('/insertarMedicinas',methods=['GET','POST'])
+def insertarMedicina():
+    lol = ""
+    nombre = ""
+    descripcion=""
+    foto = ""
+    if request.method == 'POST':
+        if verificarPorID(request.form['nombre'], MEDICAMENTOS):
+            lol = "El Medicamento ya esta registrado"
+        elif request.form['nombre'] == "" or request.form['Descripcion'] == "" :
+            lol = "Faltan campos sin completar"
+
+        else:
+            foto = "http://www.getsmartcontent.com/content/uploads/2014/08/shutterstock_149293433.jpg" if request.form['foto'] == "" else request.form['foto']
+            nombre = request.form['nombre']
+            descripcion=request.form['Descripcion']
+            insertarObjeto(Medicamento(), MEDICAMENTOS, nombre=nombre, descripcion=descripcion,foto=foto,  nombreTabla="medicamentos")
+            lol = "Registro Completado"
+    return render_template('insertarMedicina.html', lol=lol)
+
+@app.route('/insertarEnfermedad',methods=['GET','POST'])
+def insertarEnfermedad():
+    lol = ""
+    nombre = ""
+    descripcion=""
+    foto = ""
+    if request.method == 'POST':
+        if verificarPorID(request.form['nombre'], MEDICAMENTOS):
+            lol = "El Enfermedad ya esta registrado"
+        elif request.form['nombre'] == "" or request.form['Descripcion'] == "" :
+            lol = "Faltan campos sin completar"
+
+        else:
+            foto = "http://www.getsmartcontent.com/content/uploads/2014/08/shutterstock_149293433.jpg" if request.form['foto'] == "" else request.form['foto']
+            nombre = request.form['nombre']
+            descripcion=request.form['Descripcion']
+            insertarObjeto(Enfermedad(), ENFERMEDADES, nombre=nombre, descripcion=descripcion,foto=foto,  nombreTabla="enfermedad")
+            lol = "Registro Completado"
+    return render_template('insertarMedicina.html', lol=lol)

@@ -17,18 +17,25 @@
     <table>
       <thead>
         <tr>
+          <th>Username</th>
           <th>Nombre</th>
-          <th>Descripcion</th>
+            <th>Tipo</th>
           <th>Foto</th>
         </tr>
       </thead>
       <tbody>
-        {% for anim in animals %}
+        {% for a in user %}
           <tr>
 
-            <td>{{ anim.nombre }}</td>
-            <td>{{ anim.descripcion }}</td>
-            <td><img src="{{ anim.foto }}" alt="" border=3 height=70 width=70</img></td>
+            <td>{{ a.username }}</td>
+            <td>{{ a.nombre }}</td>
+            {%if a.admin == 1%}
+              <td>Admin</td>
+              {% endif %}
+              {%if a.admin == 0%}
+              <td>User</td>
+              {% endif %}
+            <td><img src="{{ a.foto }}" alt="" border=3 height=70 width=70</img></td>
 
           </tr>
         {% endfor %}
