@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+{% extends "menu.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animals</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/CSS/animals.css') }}">
+</head>
+<body>
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/CSS/animals.css') }}">
+ <form action="/modificar/{{lista}}/{{a.getID()}}" method="post">
+  <div class="container">
+    <table>
+      {% if lista=="ANIMALES" or lista=="MEDICAMENTOS" or lista=="ENFERMEDADES" %}
+      <thead>
+
+        <tr>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+          <th>Foto</th>
+        </tr>
+      </thead>
+      <tbody>
+
+          <tr>
+
+            <td>
+                <div>
+                    <input  type="text" name="nombre" value="{{a.nombre}}"/>
+                </div>
+            </td>
+            <td>
+
+                <div>
+                    <input  type="text" name="descripcion" value="{{a.descripcion}}"/>
+                </div>
+            </td>
+            <td>
+                <img src="{{ a.foto }}" alt="" border=3 height=70 width=70</img>
+                <div>
+                <input  type="text" name="foto" value="{{a.foto}}"/>
+                </div>
+            </td>
+
+          </tr>
+            
+      </tbody>
+      {% endif %}
+      {% if lista=="USERS" %}
+            <thead>
+
+        <tr>
+          <th>Username</th>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Foto</th>
+        </tr>
+      </thead>
+      <tbody>
+
+          <tr>
+
+            <td>
+                <div>
+                    <input  type="text" name="username" value="{{a.username}}"/>
+                </div>
+            </td>
+            <td>
+
+                <div>
+                    <input  type="text" name="nombre" value="{{a.nombre}}"/>
+                </div>
+            </td>
+            <td>
+
+                <div>
+                  {%if a.admin == 1%}
+                  <input  type="text" name="tipo" value="Admin"/>
+                  {% endif %}
+                  {%if a.admin == 0%}
+                  <input  type="text" name="tipo" value="User"/>
+                  {% endif %}
+
+                    
+            </div>
+            </td>
+            <td>
+                <img src="{{ a.foto }}" alt="" border=3 height=70 width=70</img>
+                <div>
+                <input  type="text" name="foto" value="{{a.foto}}"/>
+                </div>
+            </td>
+
+          </tr>
+            
+      </tbody>
+      {% endif %}
+      {% if lista=="DOSIS" %}
+       <thead>
+        <tr>
+          <th>ID</th>
+          <th>Animal</th>
+          <th>Medicamento</th>
+            <th>Enfermedad</th>
+            <th>Rango Peso</th>
+            <th>Dosis</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td><input  type="text" name="id" value="{{a.id}}"/></td>
+            <td><input  type="text" name="animal" value="{{a.animal}}"/></td>
+            <td><input  type="text" name="medicamentos" value="{{a.medicamento}}"/></td>
+              <td><input  type="text" name="enfermedad" value="{{a.enfermedad}}"/></td>
+              <td><input  type="text" name="rangopeso" value="{{a.rangoPeso}}"/></td>
+              <td><input  type="text" name="dosis" value="{{a.dosis}}"/></td>
+          </tr>
+        
+      </tbody>
+      {% endif %}
+      {% if lista=="PRESCRIPCIONES" %}
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Animal</th>
+            <th>Enfermedad</th>
+            <th>Peso</th>
+            <th>Dosis</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td><input  type="text" name="id" value="{{a.id}}"/></td>
+            <td><input  type="text" name="usuario" value="{{a.usuario}}"/></td>
+            <td><input  type="text" name="animal" value="{{a.animal}}"/></td>
+              <td><input  type="text" name="enfermedad" value="{{a.enfermedad}}"/></td>
+              <td><input  type="text" name="peso" value="{{a.peso}}"/></td>
+              <td><input  type="text" name="dosis" value="{{a.dosis}}"/></td>
+          </tr>
+      {% endif %}
+    </table>
+
+			<input type="submit" name="submit" value="Modificar" class="Btn">
+      {% if error %}
+    <div class="advertencia">
+    {{error}}
+    </div>
+    {% endif %}
+
+  </div>
+     </form>
+
+  {% endblock %}
+</body>
+</html>

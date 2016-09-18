@@ -1,3 +1,5 @@
+from utilities.Funciones import verificarLlave
+
 class Usuario():
     def __init__(self):
         self.username = ""
@@ -17,10 +19,14 @@ class Usuario():
         self.admin = kwargs["admin"]
         self.nombreTabla = kwargs["nombreTabla"]
 
-    def modificar(self, **kwargs):
+    def modificar(self,listas ,**kwargs):
         keys = kwargs.keys()
+        ret = True
         if "username" in keys:
-            self.username = kwargs["username"]
+            if verificarLlave(self, kwargs["username"], listas):
+                self.username = kwargs["username"]
+            else:
+                ret = False
         if "nombre" in keys:
             self.nombre = kwargs["nombre"]
         if "passw" in keys:
@@ -30,6 +36,7 @@ class Usuario():
         if "admin" in keys:
             self.admin = kwargs["admin"]
         self.STATUS["actualizar"][1] = self.getColumnsData()
+        return ret
 
     def getID(self):
         return self.username

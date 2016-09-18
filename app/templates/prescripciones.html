@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% extends "menu.html" %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/CSS/animals.css') }}">
 </head>
 <body>
-
+{% block content %}
   <div class="container">
       <form action="/prescripcion" method="post" class="Busqueda">
         <input type="text" name="text" value="{{ request.form.nombre }}">
@@ -21,6 +22,9 @@
             <th>Enfermedad</th>
             <th>Peso(kg)</th>
             <th>dosis</th>
+          {% if user.admin == 1 %}
+          <th>Administrativo</th>
+          {% endif %}
         </tr>
       </thead>
       <tbody>
@@ -29,9 +33,13 @@
             <td>{{ a.id }}</td>
             <td><a href="{{url_for('usuarios1',text=a.usuario)}}">{{ a.usuario}}</a></td>
             <td><a href="{{url_for('animals1',text=a.animal)}}">{{a.animal}}</a></td>
-              <td>{{a.enfermedad}}</td>
+              <td><a href="{{url_for('enfermedad1',text=a.enfermedad)}}">{{a.enfermedad}}</a></td>
               <td>{{a.peso}}</td>
-              <td>{{a.dosis}}</td>
+              <td><a href="{{url_for('dosis_Enfermedad1',text=a.dosis)}}">{{a.dosis}}</a></td>
+            {% if user.admin == 1 %}
+            <td> <a href="{{url_for('modificar',lista='PRESCRIPCIONES',text=a.id)}}" value="Modificar" class="Btn">Modificar</a>
+            <a href="{{url_for('eliminar',lista='PRESCRIPCIONES',text=a.id)}} " value="Borrar" class="Btn">Borrar</a></td>
+            {% endif %}
           </tr>
         {% endfor %}
       </tbody>
@@ -40,5 +48,6 @@
     {{ pagination.links }}
     </ul>
   </div>
+    {% endblock %}
 </body>
 </html>

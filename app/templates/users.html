@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% extends "menu.html" %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/CSS/animals.css') }}">
 </head>
 <body>
-    {{ pagination.info }}
+    {% block content %}
   <div class="container">
     {%if not text %}
     <form action="/usuarios" method="post" class="Busqueda">
@@ -21,10 +22,13 @@
           <th>Nombre</th>
             <th>Tipo</th>
           <th>Foto</th>
+          {% if user.admin == 1 %}
+          <th>Administrativo</th>
+          {% endif %}
         </tr>
       </thead>
       <tbody>
-        {% for a in user %}
+        {% for a in user1 %}
           <tr>
 
             <td>{{ a.username }}</td>
@@ -36,7 +40,10 @@
               <td>User</td>
               {% endif %}
             <td><img src="{{ a.foto }}" alt="" border=3 height=70 width=70</img></td>
-
+            {% if user.admin == 1 %}
+            <td><a href="{{url_for('modificar',lista='USERS',text=a.username)}}" value="Modificar" class="Btn">Modificar</a>
+            <a href="{{url_for('eliminar',lista='USERS',text=a.username)}} " value="Borrar" class="Btn">Borrar</a></td>
+            {% endif %}
           </tr>
         {% endfor %}
       </tbody>
@@ -45,6 +52,7 @@
     {{ pagination.links }}
     </ul>
   </div>
+   {% endblock %}
 </body>
 </html>
 

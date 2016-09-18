@@ -5,13 +5,13 @@ body{
     background-size: 100% 900px;
 }
 .container{
-    width:800px;
+    min-width:800px;
     height:314px;
     text-align:center;
     background-color: rgba(10, 20, 41,0.6);
     border-radius:4px;
     margin: 0 auto;
-    margin-top:96px;
+    margin-top:20px;
 
 }
 .consulta{
@@ -21,13 +21,14 @@ body{
 }
 input[type="text"]{
     height: 28px;
-    width: 300px;
+    width: 200px;
     font-size: 18px;
-    margin-top: 4px;
+    margin-top: 1px;
     border-radius:4px;
     background-color: #fff;
     border-color: #3333ff;
 }
+
 ul.pagination {
     display: inline-block;
     padding: 0;
@@ -90,5 +91,22 @@ table tr:nth-child(odd) {
     border-radius: 4px;
     border-bottom: 4px solid #3333ff;
     background-color: #4d4dff;
+    text-decoration: none
+}
+.capitalize{
+    text-transform: capitalize;
+}
+.containerE{
+    width:500px;
+    height:300px;
+    text-align:center;
+    background-color: rgba(10, 20, 41,0.5);
+    border-radius:4px;
+    margin: 0 auto;
+    margin-top:200px;
 
+}
+.advertencia{
+    padding-top: 10px;
+    color:white;
 }

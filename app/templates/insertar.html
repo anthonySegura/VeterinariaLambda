@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% extends "menu.html" %}
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Veterinaria</title>
+</head>
+<body>
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/CSS/login.css') }}">
+    <link rel="stylesheet"  href="{{ url_for('static',filename='styles/css/font-awesome/css/font-awesome.min.css') }}">
+<div class="containerM">
+    <h1>Insercion de {{info}}</h1>
+    {% if text=="USERS" %}
+    <form action="" method="post">
+            <div class="form-input">
+            <input type="text" name="username" placeholder="Username" value="{{ request.form.username }}">
+            </div>
+             <div class="form-input1">
+            <input type="password" name="password" placeholder="Password" value="{{ request.form.password }}">
+             </div>
+            <div class="form-input">
+            <input type="text" name="nombre" placeholder="Nombre Completo" value="{{ request.form.nombre }}">
+            </div>
+            <div class="form-input">
+            <input type="text" name="foto" placeholder="Link Foto" value="{{ request.form.foto }}">
+            </div>
+
+            <input type="submit" name="submit" value="Insertar" class="loginBtn">
+    </form>
+    {% endif %}
+    {% if text=="MEDICAMENTOS" or text=="ENFERMEDADES" or text=="ANIMALES" %}
+            <form action="" method="post">
+            <div class="form-input">
+            <input type="text" name="nombre" placeholder="Nombre" value="{{ request.form.nombre }}">
+            </div>
+             <div class="form-input">
+            <input type="text" name="Descripcion" placeholder="Descripcion" value="{{ request.form.descripcion }}">
+            </div>
+            <div class="form-input">
+            <input type="text" name="foto" placeholder="Link Foto" value="{{ request.form.foto }}">
+            </div>
+
+            <input type="submit" name="submit" value="Insertar" class="loginBtn">
+    </form>
+    {% endif %}
+    {% if text == "PRESCRIPCIONES" %}
+     <form action="" method="post">
+            <div class="form-input">
+            <input type="text" name="id" placeholder="ID" value="{{ request.form.id }}">
+            </div>
+             <div class="form-input">
+            <input type="text" name="animal" placeholder="Animal" value="{{ request.form.animal }}">
+            </div>
+            <div class="form-input">
+            <input type="text" name="enfermedad" placeholder="Enfermedad" value="{{ request.form.enfermedad }}">
+            </div>
+            <div class="form-input">
+            <input type="text" name="peso" placeholder="Peso" value="{{ request.form.peso }}">
+            </div>
+            <div class="form-input">
+            <input type="text" name="dosis" placeholder="Dosis" value="{{ request.form.dosis }}">
+            </div>
+            <input type="submit" name="submit" value="Insertar" class="loginBtn">
+    </form>
+
+    {% endif %}
+     {% if text == "DOSIS" %}
+     <form action="" method="post">
+            <div class="form-input">
+            <input type="text" name="id" placeholder="ID" value="{{ request.form.id }}">
+            </div>
+             <div class="form-input">
+            <input type="text" name="animal" placeholder="Animal" value="{{ request.form.animal }}">
+            </div>
+            <div class="form-input">
+            <input type="text" name="medicamento" placeholder="Medicamento" value="{{ request.form.medicamento }}">
+            </div>
+            <div class="form-input">
+            <input type="text" name="enfermedad" placeholder="Enfermedad" value="{{ request.form.enfermedad }}">
+            </div>
+            <div class="form-input">
+            <input type="text" name="rangoPeso" placeholder="Rango Peso" value="{{ request.form.rangoPeso }}">
+            </div>
+            <div class="form-input">
+            <input type="text" name="dosis" placeholder="Dosis" value="{{ request.form.dosis }}">
+            </div>
+            <input type="submit" name="submit" value="Insertar" class="loginBtn">
+    </form>
+     {% endif %}
+    {% if error %}
+    <div class="advertencia">
+    {{error}}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+</body>
+</html>

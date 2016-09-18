@@ -1,4 +1,6 @@
 
+from utilities.Funciones import verificarLlave
+
 class Prescripcion:
     def __init__(self):
         self.id = ""
@@ -19,10 +21,14 @@ class Prescripcion:
         self.dosis = kwargs["dosis"]
         self.nombreTabla = kwargs["nombreTabla"]
 
-    def modificar(self, **kwargs):
+    def modificar(self,listas ,**kwargs):
         keys = kwargs.keys()
+        ret = True
         if "id" in keys:
-            self.id = kwargs["id"]
+            if verificarLlave(self, kwargs["id"], listas):
+                self.id = kwargs["id"]
+            else:
+                ret = False
         if "usuario" in keys:
             self.usuario = kwargs["usuario"]
         if "animal" in keys:
@@ -34,6 +40,7 @@ class Prescripcion:
         if "dosis" in keys:
             self.dosis = kwargs["dosis"]
         self.STATUS["actualizar"][1] = self.getColumnsData()
+        return ret
 
     def getID(self):
         return self.id

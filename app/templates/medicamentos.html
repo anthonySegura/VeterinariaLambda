@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% extends "menu.html" %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,18 +7,23 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/CSS/animals.css') }}">
 </head>
 <body>
-
+{% block content %}
   <div class="container">
+  {% if not text %}
       <form action="/medicamentos" method="post" class="Busqueda">
         <input type="text" name="text" value="{{ request.form.nombre }}">
         <input type="submit" name="submit" value="Consultar" class="Btn">
     </form>
+    {% endif %}
     <table>
       <thead>
         <tr>
           <th>Nombre</th>
           <th>Descripcion</th>
           <th>Foto</th>
+          {% if user.admin == 1 %}
+          <th>Administrativo</th>
+          {% endif %}
         </tr>
       </thead>
       <tbody>
@@ -26,14 +32,20 @@
             <td>{{ medi.nombre }}</td>
             <td>{{ medi.descripcion }}</td>
             <td><img src="{{ medi.foto }}" alt="" border=3 height=70 width=70</img></td>
-
+            {% if user.admin == 1 %}
+            <td><a href="{{url_for('modificar',lista='MEDICAMENTOS',text=medi.nombre)}}" value="Modificar" class="Btn">Modificar</a>
+            <a href="{{url_for('eliminar',lista='MEDICAMENTOS',text=medi.nombre)}} " value="Borrar" class="Btn">Borrar</a></td>
+            {% endif %}
           </tr>
         {% endfor %}
       </tbody>
     </table>
+    {% if not text %}
     <ul class="pagination">
     {{ pagination.links }}
     </ul>
+    {% endif %}
   </div>
+  {% endblock %}
 </body>
 </html>

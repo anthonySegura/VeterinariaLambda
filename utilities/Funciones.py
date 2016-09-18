@@ -1,5 +1,5 @@
 dividir = lambda lista, n : [lista[i:i+n] for i in range(0, len(lista) , n)]
-
+filtrarEliminados = lambda lista : list(filter(lambda x : x.STATUS["borrar"] == False, lista))
 #Insercion de los objetos en las listas con polimorfismo
 def insertarObjeto(objeto, lista, **atributos):
     objeto.crear(**atributos)
@@ -13,19 +13,41 @@ def cargarObjeto(objeto, lista, **atributos):
 
 #Modifica los objetos con polimorfismo
 #!Tratar de hacerlo funcional
-def modificarObjeto(objeto,listas , **nuevosAtributos):
+def modificarObjeto(objeto, listas , **nuevosAtributos):
     id = objeto.getID()
     objeto.STATUS["actualizar"][0] = True
     objeto.STATUS["actualizar"][2] = id
-    objeto.modificar(**nuevosAtributos)
+    if objeto.modificar(listas, **nuevosAtributos) == False:
+        return False
     #Se buscan en todas las listas los objetos que tengan al objeto modificado como llave foranea
     for l in listas:
         for j in l:
            for x in list(j.getColumnsData().values()):
                if id in x:
-                   print(objeto.getIDIdentifier(), " ", objeto.getID())
                    #una vez encontrado el objeto se actualiza la llave foranea con el valor actual
-                   j.modificar(**{objeto.nombreTabla : objeto.getID()})
+                   j.modificar(listas,**{objeto.nombreTabla : objeto.getID()})
+
+#Antes de modificar la llave de un objeto se verifica que esa llave no exista en la tabla para evitar errores en la base de datos.
+#Retorna False en caso de existir ya la llave en la tabla. True si no hay problemas de llaves.
+#!Tratar de hacer funcional
+def verificarLlave(objeto, nuevoID ,listas):
+    for lista in listas:
+        for obj in lista:
+            for valores in list(obj.getColumnsData().values()):
+                if objeto.nombreTabla == obj.nombreTabla:
+                    if nuevoID == obj.getID():
+                        return False
+    return True
+
+#Antes de borrar un objeto verifica que no este relacionado con otros mediante las llaves foraneas
+#!Tratar de hacer funcional
+def verificarBorrado(objeto, listas):
+    for l in listas:
+        for j in l:
+           for x in list(j.getColumnsData().values()):
+               if objeto.getID() in x and objeto.getID() != j.getID():
+                   return False
+    return True
 
 
 #Verifica si un objeto se encuentra en la lista

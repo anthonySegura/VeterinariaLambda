@@ -1,3 +1,4 @@
+from utilities.Funciones import verificarLlave
 
 class Enfermedad:
     def __init__(self):
@@ -13,15 +14,20 @@ class Enfermedad:
         self.foto = kwargs["foto"]
         self.nombreTabla = kwargs["nombreTabla"]
 
-    def modificar(self ,**kwargs):
+    def modificar(self, listas ,**kwargs):
         keys = kwargs.keys()
+        ret = True
         if "nombre" in keys:
-            self.nombre = kwargs["nombre"]
+            if verificarLlave(self, kwargs["nombre"], listas):
+                self.nombre = kwargs["nombre"]
+            else:
+                ret = False
         if "descripcion" in keys:
             self.descripcion = kwargs["descripcion"]
         if "foto" in keys:
             self.foto = kwargs["foto"]
         self.STATUS["actualizar"][1] = self.getColumnsData()
+        return ret
 
     def getID(self):
         return self.nombre

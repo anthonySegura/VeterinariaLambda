@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% extends "menu.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prescripciones</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/CSS/animals.css') }}">
+</head>
+<body>
+{% block content %}
+  <div class="container">
+      {%if not text %}
+  	<div style="display:inline">
+      <form action="/{{variable}}" method="post" class="Busqueda">
+        <input type="text" name="id" value="{{ request.form.nombre }}" placeholder="ID" class="lol">
+        <input type="submit" name="submit" value="ID" class="Btn">
+        <input type="text" name="text" value="{{ request.form.nombre }}" placeholder="Enfermedad" class="lol">
+        <input type="submit" name="submit" value="Enfermedad" class="Btn">
+        <input type="text" name="animal" value="{{ request.form.nombre }}" placeholder="Animal">
+	    <input type="submit" name="submit" value="Animal" class="Btn">
+    </form>
+	</div>
+      {% endif %}
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Animal</th>
+          <th>Medicamento</th>
+            <th>Enfermedad</th>
+            <th>Rango Peso</th>
+            <th>Dosis</th>
+          {% if user.admin == 1 %}
+          <th>Administrativo</th>
+          {% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for a in dosis %}
+          <tr>
+            <td>{{ a.id }}</td>
+            <td><a href="{{url_for('animals1',text=a.animal)}}">{{a.animal}}</a></td>
+            <td><a href="{{url_for('medicamentos1',text=a.medicamento)}}">{{a.medicamento}}</td>
+              <td><a href="{{url_for('enfermedad1',text=a.enfermedad)}}">{{a.enfermedad}}</a></td>
+              <td>{{a.rangoPeso}}</td>
+              <td>{{a.dosis}}</td>
+            {% if user.admin == 1 %}
+            <td> <a href="{{url_for('modificar',lista='DOSIS',text=a.id)}}" value="Modificar" class="Btn">Modificar</a>
+            <a href="{{url_for('eliminar',lista='DOSIS',text=a.id)}} " value="Borrar" class="Btn">Borrar</a></td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  
+    <ul class="pagination">
+    {{ pagination.links }}
+    </ul>
+
+  </div>
+{% endblock %}
+</body>
+</html>

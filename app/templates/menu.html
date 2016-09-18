@@ -1,0 +1,61 @@
+{% if user %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/CSS/menu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/CSS/animals.css') }}">
+
+</head>
+<body>
+    <div id="div1">
+        <div id="div2">
+            <div id="barra_navegacion">
+                <head><h1>Veterinaria</h1></head>
+            <ul>
+                <li><a href="#">Consultas</a>
+                    <ul>
+                        <li><a href="{{url_for('animals')}}" class="activo">Listado de animales</a></li>
+                        <li><a href="{{url_for('medicamentos')}}">Listado de medicamentos</a></li>
+                        <li><a href="{{url_for('prescripcion')}}">Listado de prescripciones</a></li>
+                        <li><a href="{{url_for('enfermedad')}}">Listado de enfermedades</a></li>
+                        <li><a href="{{url_for('usuarios')}}">Listado de Usuarios</a></li>
+
+                    </ul>
+
+                </li>
+                <li><a href="{{url_for('dosis_Enfermedad')}}">Busquedas</a>
+                </li>
+                <li><a href="#">Inserciones</a> 
+                <ul>
+                    <li><a href="{{url_for('insertar',text='ANIMALES')}}">Insertar animales</a></li>
+                    <li><a href="{{url_for('insertar',text='MEDICAMENTOS')}}">Insertar medicamentos</a></li>
+                    <li><a href="{{url_for('insertar',text='PRESCRIPCIONES')}}">Insertar prescripciones</a></li>
+                    <li><a href="{{url_for('insertar',text='ENFERMEDADES')}}">Insertar enfermedades</a></li>
+                    <li><a href="{{url_for('insertar',text='DOSIS')}}">Insertar dosis</a></li>
+
+                </ul>
+
+                </li>
+                {% if user.admin == 1 %}
+                <li><a href="#">Admin</a>
+                    <ul>
+
+                        <li><a href="{{url_for('insertar',text='USERS')}}" class="activo">Agregar Usuarios</a></li>
+
+                    </ul>
+
+                </li>
+                {% endif %}
+                
+            </ul>
+
+            </div>
+
+        </div>
+        {% block content %}{% endblock %}
+    </div>
+     
+</body>
+</html>
+{% endif %}

@@ -1,6 +1,6 @@
 h1{
-color:green;
-font-family:impact;
+color:white;
+font-family:arial;
 }
 body{
     margin: 0 auto;
@@ -8,7 +8,7 @@ body{
     background-repeat: no-repeat;
     background-size: 100% 900px;
 }
-.container{
+.containerE{
     width:500px;
     height:300px;
     text-align:center;
@@ -18,7 +18,17 @@ body{
     margin-top:200px;
 
 }
-.container img{
+.containerM{
+    width:500px;
+    min-height:300px;
+    text-align:center;
+    background-color: rgba(10, 20, 41,0.5);
+    border-radius:4px;
+    margin: 0 auto;
+    margin-top:200px;
+
+}
+.containerE img{
     width:190px;
     height: 160px;
     margin-top: -90px;
